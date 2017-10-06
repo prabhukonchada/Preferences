@@ -1,5 +1,6 @@
 package prabhukonchada.android.preferences;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(item.getItemId() == R.id.settings)
         {
-
+            Intent intent = new Intent(this,SettingsActivity.class);
+            startActivity(intent);
         }
 
         return true;
