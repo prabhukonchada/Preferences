@@ -1,18 +1,24 @@
 package prabhukonchada.android.preferences;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    TextView preferenceValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        preferenceValue = (TextView) findViewById(R.id.preference_value);
+        setUpSharedPreferences();
     }
 
     @Override
@@ -32,5 +38,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    private void setUpSharedPreferences()
+    {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean check_box_status = sharedPreferences.getBoolean("check_box_selection",true);
+        preferenceValue.setText(String.valueOf(check_box_status));
     }
 }
