@@ -13,7 +13,7 @@
         android:title="List Preference"
         android:summary="radio buttons"
         android:key="color"
-        android:defaultValue="default_value"
+        android:defaultValue="@string/pref_entry_value_two"
         android:entries="@array/entry_list"
         android:entryValues="@array/entry_value_list"/>
 

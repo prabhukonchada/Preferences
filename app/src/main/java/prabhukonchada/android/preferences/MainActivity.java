@@ -12,12 +12,14 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
     TextView preferenceValue;
+    TextView listPreferenceValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         preferenceValue = (TextView) findViewById(R.id.preference_value);
+        listPreferenceValue = (TextView) findViewById(R.id.preference_list_item_value);
         setUpSharedPreferences();
     }
 
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         Boolean check_box_status = sharedPreferences.getBoolean("check_box_selection",true);
         preferenceValue.setText(String.valueOf(check_box_status));
+        listPreferenceValue.setText(sharedPreferences.getString("color",getString(R.string.pref_entry_two)));
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
