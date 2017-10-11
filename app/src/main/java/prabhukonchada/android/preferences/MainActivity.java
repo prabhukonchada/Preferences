@@ -63,5 +63,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         {
             preferenceValue.setText(String.valueOf(sharedPreferences.getBoolean(key,true)));
         }
+        if(key.equals("color"))
+        {
+            listPreferenceValue.setText(sharedPreferences.getString(key,getString(R.string.pref_entry_two)));
+        }
+
     }
 }

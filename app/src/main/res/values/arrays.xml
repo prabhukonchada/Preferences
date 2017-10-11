@@ -9,6 +9,6 @@
     <array name="entry_value_list">
         <item>@string/pref_entry_value_one</item>
         <item>@string/pref_entry_value_two</item>
-        <item>@string/pref_entry_value_one</item>
+        <item>@string/pref_entry_value_three</item>
     </array>
 </resources>
