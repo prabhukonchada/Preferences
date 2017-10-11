@@ -52,11 +52,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         Preference preference = findPreference(key);
         if(preference != null)
         {
-            if(key.equals("color"))
+            if(!(preference instanceof CheckBoxPreference))
             {
-                ListPreference listPreference = (ListPreference) preference;
-                int index = (listPreference).findIndexOfValue(listPreference.getValue());
-                listPreference.setSummary(((ListPreference) preference).getEntries()[index]);
+                String value = sharedPreferences.getString(preference.getKey(),"");
+                setPreferenceSummary(preference,value);
             }
         }
     }
