@@ -6,9 +6,15 @@ import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.preference.PreferenceScreen;
 
-public class SettingsFragment extends PreferenceFragmentCompat {
+public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        PreferenceManager.getDefaultSharedPreferences(getContext()).unregisterOnSharedPreferenceChangeListener(this);
+    }
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -16,7 +22,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         PreferenceScreen preferenceScreen = getPreferenceScreen();
         SharedPreferences preferences = preferenceScreen.getSharedPreferences();
-
+        preferences.registerOnSharedPreferenceChangeListener(this);
         int count = preferenceScreen.getPreferenceCount();
 
         for(int i=0;i<count;i++)
@@ -38,6 +44,20 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             ListPreference listPreference = (ListPreference) preference;
             int index = (listPreference).findIndexOfValue(value);
             listPreference.setSummary(listPreference.getEntries()[index]);
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        Preference preference = findPreference(key);
+        if(preference != null)
+        {
+            if(key.equals("color"))
+            {
+                ListPreference listPreference = (ListPreference) preference;
+                int index = (listPreference).findIndexOfValue(listPreference.getValue());
+                listPreference.setSummary(((ListPreference) preference).getEntries()[index]);
+            }
         }
     }
 }
