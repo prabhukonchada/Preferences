@@ -9,4 +9,12 @@
         android:defaultValue="true"
         />
 
+    <ListPreference
+        android:title="List Preference"
+        android:summary="radio buttons"
+        android:key="color"
+        android:defaultValue="default_value"
+        android:entries="@array/entry_list"
+        android:entryValues="@array/entry_value_list"/>
+
 </PreferenceScreen>

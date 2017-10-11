@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="entry_list">
+        <item>@string/pref_entry_one</item>
+        <item>@string/pref_entry_two</item>
+        <item>@string/pref_entry_three</item>
+    </array>
+
+    <array name="entry_value_list">
+        <item>@string/pref_entry_value_one</item>
+        <item>@string/pref_entry_value_two</item>
+        <item>@string/pref_entry_value_one</item>
+    </array>
+</resources>
