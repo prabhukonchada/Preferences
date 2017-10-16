@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         Boolean check_box_status = sharedPreferences.getBoolean("check_box_selection",true);
+        Float textSize = Float.valueOf(sharedPreferences.getString("size","30"));
+        preferenceValue.setTextSize(textSize);
+        listPreferenceValue.setTextSize(textSize);
         preferenceValue.setText(String.valueOf(check_box_status));
         listPreferenceValue.setText(sharedPreferences.getString("color",getString(R.string.pref_entry_two)));
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
@@ -66,6 +69,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         if(key.equals("color"))
         {
             listPreferenceValue.setText(sharedPreferences.getString(key,getString(R.string.pref_entry_two)));
+        }
+        if(key.equals("size"))
+        {
+            listPreferenceValue.setTextSize(Float.valueOf(sharedPreferences.getString(key,"30")));
+            preferenceValue.setTextSize(Float.valueOf(sharedPreferences.getString(key,"30")));
         }
 
     }

@@ -3,6 +3,7 @@ package prabhukonchada.android.preferences;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.preference.CheckBoxPreference;
+import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -28,10 +29,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         for(int i=0;i<count;i++)
         {
             Preference preference = preferenceScreen.getPreference(i);
-            if(!(preference instanceof CheckBoxPreference))
+            if(preference instanceof ListPreference)
             {
                 String value = preferences.getString(preference.getKey(),"");
                 setPreferenceSummary(preference,value);
+            }
+            else if(preference instanceof EditTextPreference)
+            {
+                Float textSize = Float.valueOf(preferences.getString(preference.getKey(),"30"));
+                preference.setSummary(String.valueOf(textSize));
             }
 
         }
@@ -52,10 +58,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         Preference preference = findPreference(key);
         if(preference != null)
         {
-            if(!(preference instanceof CheckBoxPreference))
+            if(preference instanceof ListPreference)
             {
                 String value = sharedPreferences.getString(preference.getKey(),"");
                 setPreferenceSummary(preference,value);
+            }
+            else if(preference instanceof EditTextPreference)
+            {
+                Float textSize = Float.valueOf(sharedPreferences.getString(preference.getKey(),"30"));
+                preference.setSummary(String.valueOf(textSize));
             }
         }
     }

@@ -17,4 +17,12 @@
         android:entries="@array/entry_list"
         android:entryValues="@array/entry_value_list"/>
 
+    <EditTextPreference
+        android:numeric="decimal"
+        android:inputType="numberDecimal"
+        android:defaultValue = "30"
+        android:summary="30"
+        android:key="size"
+        android:title="Text Size"/>
+
 </PreferenceScreen>
